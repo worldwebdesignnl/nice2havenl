@@ -1,0 +1,522 @@
+:root {
+    --rose: #bd8f6e;
+    --rose-dark: #a97a58;
+    --dark: #141414;
+    --cream: #faf8f5;
+    --footer-dark: #1c1c1c;
+}
+
+*, *::before, *::after {
+    border-radius: 0 !important;
+}
+
+html {
+    background-color: var(--cream);
+}
+
+body {
+    font-family: 'Jost', sans-serif;
+    color: var(--dark);
+    background-color: var(--cream);
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-display {
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+a {
+    color: var(--rose-dark);
+}
+
+.btn {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    padding: 0.75rem 1.5rem;
+}
+
+.btn-rose {
+    background-color: var(--rose);
+    border-color: var(--rose);
+    color: #fff;
+}
+
+.btn-rose:hover {
+    background-color: var(--rose-dark);
+    border-color: var(--rose-dark);
+    color: #fff;
+}
+
+.btn-outline-rose {
+    background-color: transparent;
+    border: 1px solid var(--rose);
+    color: var(--rose);
+}
+
+.btn-outline-rose:hover {
+    background-color: var(--rose);
+    color: #fff;
+}
+
+.text-rose {
+    color: var(--rose);
+}
+
+.cta-dark {
+    position: relative;
+    background-color: var(--footer-dark);
+    color: var(--cream);
+    border-top: 3px solid var(--rose);
+    overflow: hidden;
+}
+
+.cta-dark::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: linear-gradient(120deg, transparent 30%, #2c1f14 65%, transparent 100%);
+    background-size: 100% 420px;
+    background-repeat: no-repeat;
+    background-position: top;
+    pointer-events: none;
+}
+
+.cta-dark .container {
+    position: relative;
+    z-index: 1;
+}
+
+.kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.8rem;
+    color: var(--rose);
+}
+
+/* Navbar */
+.navbar-n2h {
+    background-color: var(--cream);
+    border-bottom: 1px solid rgba(20, 20, 20, 0.08);
+}
+
+.navbar-n2h .navbar-brand {
+    display: inline-flex;
+    align-items: baseline;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+
+.brand-logo__nice,
+.brand-logo__have {
+    border-bottom: 1px solid var(--dark);
+    padding-bottom: 1px;
+}
+
+.brand-logo__2 {
+    font-size: 1.6em;
+    line-height: 1;
+    margin: 0 0.02em;
+    color: var(--rose);
+}
+
+.navbar-n2h .nav-link {
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--dark);
+    padding-bottom: 0.35rem;
+    border-bottom: 2px solid transparent;
+}
+
+.navbar-n2h .nav-link:hover {
+    color: var(--rose-dark);
+}
+
+.navbar-n2h .nav-link.active {
+    color: var(--rose);
+    border-bottom-color: var(--rose);
+}
+
+/* Hero slider */
+.hero-cine {
+    position: relative;
+    height: 70vh;
+    min-height: 400px;
+    overflow: hidden;
+    background: linear-gradient(115deg, #2b2b2b 0%, #6b6b6b 55%, #9a9a9a 100%);
+}
+
+.hero-cine::after {
+    content: '';
+    position: absolute;
+    top: -15%;
+    right: -10%;
+    width: 60%;
+    height: 130%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+}
+
+.cine-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.2s ease;
+}
+
+.cine-slide.is-active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cine-slide__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    animation: n2h-ken-burns 9s ease-in-out forwards;
+}
+
+.cine-slide__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0.25) 0%, rgba(20, 20, 20, 0.55) 100%);
+}
+
+.cine-slide__content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #fff;
+    max-width: 640px;
+}
+
+.hero-nav-arrows {
+    position: absolute;
+    right: 1.5rem;
+    bottom: 3.5rem;
+    z-index: 3;
+    display: flex;
+    gap: 0.75rem;
+}
+
+.hero-nav-arrow {
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: transparent;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.hero-nav-arrow:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.hero-progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 3;
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+}
+
+.hero-progress__bar {
+    flex: 1;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.hero-progress__bar span {
+    position: absolute;
+    inset: 0;
+    width: 0;
+    background: var(--rose);
+}
+
+.hero-progress__bar.is-active span {
+    animation: n2h-progress 7s linear forwards;
+}
+
+@keyframes n2h-ken-burns {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+
+@keyframes n2h-progress {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* USP blocks */
+.usp-card {
+    text-align: center;
+    padding: 2rem 1rem;
+    height: 100%;
+    border: 1px solid rgba(20, 20, 20, 0.08);
+    background: #fff;
+}
+
+.usp-card__icon {
+    font-size: 2rem;
+    color: var(--rose);
+    margin-bottom: 0.75rem;
+}
+
+/* Category tiles */
+.cat-card {
+    position: relative;
+    display: block;
+    height: 300px;
+    overflow: hidden;
+    background-color: var(--dark);
+    color: #fff;
+    text-decoration: none;
+}
+
+.cat-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cat-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 20, 20, 0.1) 40%, rgba(20, 20, 20, 0.75) 100%);
+}
+
+.cat-card__title {
+    position: absolute;
+    left: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 2;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+}
+
+.cat-card--1 { background: linear-gradient(160deg, #8a7256 0%, #4b3a2a 100%); }
+.cat-card--2 { background: linear-gradient(160deg, #6e7d6b 0%, #35402f 100%); }
+.cat-card--3 { background: linear-gradient(160deg, #7c8a99 0%, #2f3a45 100%); }
+.cat-card--4 { background: linear-gradient(160deg, #a3866b 0%, #3d2f24 100%); }
+
+/* Page header (static banner for category/brand/store/product pages) */
+.page-header {
+    position: relative;
+    background: linear-gradient(135deg, #8a8a8a 0%, #3a3a3a 55%, #1c1c1c 100%);
+    color: #fff;
+    padding: 6.5rem 0 3.5rem;
+    border-bottom: 3px solid var(--rose);
+}
+
+.page-header__breadcrumb {
+    font-size: 1rem;
+}
+
+.page-header__breadcrumb a {
+    color: var(--rose);
+}
+
+.page-header__breadcrumb span {
+    color: #fff;
+}
+
+.page-header .kicker {
+    font-size: 0.85rem;
+}
+
+.page-header__title {
+    font-size: 3.5rem;
+}
+
+.page-header__subtitle {
+    font-size: 1.1875rem;
+}
+
+/* Generic feature placeholder image (used where no photo has been uploaded yet) */
+.feature-image {
+    height: 360px;
+    width: 100%;
+    object-fit: cover;
+    background-color: #e5e0d8;
+}
+
+/* Checklist with rose checkmarks */
+.check-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.check-list li {
+    margin-bottom: 0.6rem;
+}
+
+.check-list li i {
+    color: var(--rose);
+    margin-right: 0.5rem;
+}
+
+/* Brand cards */
+.brand-card {
+    border: 1px solid rgba(20, 20, 20, 0.08);
+    background: #fff;
+    height: 100%;
+    padding: 1.75rem;
+}
+
+/* Store cards */
+.store-card {
+    border: 1px solid rgba(20, 20, 20, 0.08);
+    overflow: hidden;
+    background: #fff;
+    height: 100%;
+}
+
+.store-card__image {
+    height: 220px;
+    width: 100%;
+    object-fit: cover;
+}
+
+.store-card__image--placeholder.store-card__image--1 { background: linear-gradient(160deg, #a3866b 0%, #3d2f24 100%); }
+.store-card__image--placeholder.store-card__image--2 { background: linear-gradient(160deg, #7c8a99 0%, #2f3a45 100%); }
+
+/* Product cards */
+.product-card {
+    display: block;
+    border: 1px solid rgba(20, 20, 20, 0.08);
+    overflow: hidden;
+    background: #fff;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.product-card__image {
+    height: 240px;
+    width: 100%;
+    object-fit: cover;
+    background-color: #e5e0d8;
+}
+
+.product-card__brand {
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    color: var(--rose-dark);
+}
+
+/* Brand ticker */
+.brand-ticker {
+    border-top: 2px solid var(--rose);
+    background-color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.brand-ticker__track {
+    display: inline-flex;
+    align-items: center;
+    animation: n2h-ticker 40s linear infinite;
+}
+
+.brand-ticker__item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--dark);
+}
+
+.brand-ticker__item::after {
+    content: '\2022';
+    color: var(--rose);
+    margin-left: 1.5rem;
+}
+
+@keyframes n2h-ticker {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+footer.site-footer {
+    background-color: var(--footer-dark);
+    color: rgba(250, 248, 245, 0.8);
+    border-top: 3px solid var(--rose);
+}
+
+footer.site-footer a {
+    color: rgba(250, 248, 245, 0.8);
+    text-decoration: none;
+}
+
+footer.site-footer a:hover {
+    color: #fff;
+}
+
+footer.site-footer h5 {
+    position: relative;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1.25rem !important;
+}
+
+footer.site-footer h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 2.5rem;
+    height: 2px;
+    background-color: var(--rose);
+}
+
+footer.site-footer .social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(250, 248, 245, 0.3);
+}
+
+footer.site-footer .credit {
+    text-decoration: underline;
+}
+
+/* Contact line (address/phone/email rows — footer and contact page) */
+.contact-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+.contact-line i {
+    color: var(--rose);
+    margin-top: 0.2rem;
+}
