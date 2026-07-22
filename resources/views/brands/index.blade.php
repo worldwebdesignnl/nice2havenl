@@ -1,9 +1,16 @@
 <x-layout meta-title="Merken — Nice2Have">
+    <x-page-header
+        kicker="Merken"
+        title="Toonaangevende merken"
+        subtitle="Een zorgvuldig samengestelde selectie van merken die je overal ziet terugkomen."
+        :breadcrumbs="[
+            ['label' => 'Home', 'url' => route('home')],
+            ['label' => 'Merken'],
+        ]"
+    />
+
     <section class="py-5">
         <div class="container">
-            <p class="kicker mb-2">Merken</p>
-            <h1 class="font-display mb-4">Toonaangevende merken</h1>
-
             <div class="row g-4">
                 @foreach ($brands as $brand)
                     <div class="col-md-4 col-6">
@@ -14,7 +21,7 @@
                                 @endif
                                 <h3 class="h5 font-display">{{ $brand->name }}</h3>
                                 @if ($brand->description)
-                                    <p class="text-muted mb-0">{{ $brand->description }}</p>
+                                    <p class="text-muted mb-0">{{ strip_tags($brand->description) }}</p>
                                 @endif
                             </div>
                         </a>

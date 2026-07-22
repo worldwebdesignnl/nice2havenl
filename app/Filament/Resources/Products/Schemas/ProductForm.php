@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
@@ -30,7 +31,12 @@ class ProductForm
                     ->required(),
                 Textarea::make('short_description')
                     ->columnSpanFull(),
-                Textarea::make('description')
+                RichEditor::make('description')
+                    ->toolbarButtons([
+                        'bold', 'italic', 'underline', 'strike',
+                        'h2', 'h3', 'bulletList', 'orderedList',
+                        'link', 'blockquote', 'undo', 'redo',
+                    ])
                     ->columnSpanFull(),
                 TextInput::make('price')
                     ->numeric()

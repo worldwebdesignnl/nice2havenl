@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!hero) return;
 
     const slides = hero.querySelectorAll('.cine-slide');
-    const bars = hero.querySelectorAll('.hero-progress__bar');
     if (slides.length < 2) return;
 
     let current = 0;
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const show = (index) => {
         slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
-        bars.forEach((bar, i) => bar.classList.toggle('is-active', i === index));
         current = index;
     };
 
@@ -22,13 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(interval);
         interval = setInterval(next, 7000);
     };
-
-    bars.forEach((bar, i) => {
-        bar.addEventListener('click', () => {
-            show(i);
-            startAutoplay();
-        });
-    });
 
     hero.querySelector('[data-hero-next]')?.addEventListener('click', () => {
         next();

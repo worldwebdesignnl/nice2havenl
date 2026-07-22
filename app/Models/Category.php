@@ -43,6 +43,7 @@ class Category extends Model implements HasMedia
         $this->addMediaCollection('feature_photo')->singleFile();
         $this->addMediaCollection('gift_photo')->singleFile();
         $this->addMediaConversion('thumb')->width(500)->height(400);
+        $this->addMediaConversion('medium')->width(1600)->height(700);
     }
 
     public function photoUrl(string $conversion = 'thumb'): ?string

@@ -53,7 +53,7 @@
 
                             <div class="col-md-6">
                                 <label class="form-label">Onderwerp</label>
-                                <input type="text" name="subject" value="{{ old('subject') }}" placeholder="Waar gaat je vraag over?" class="form-control @error('subject') is-invalid @enderror">
+                                <input type="text" name="subject" value="{{ old('subject', request('product') ? 'Vraag over '.request('product') : '') }}" placeholder="Waar gaat je vraag over?" class="form-control @error('subject') is-invalid @enderror">
                                 @error('subject') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
 
@@ -83,22 +83,22 @@
                     <h2 class="font-display mb-4">Liever bellen of mailen?</h2>
 
                     @foreach ($stores as $store)
-                        <div class="contact-line">
-                            <i class="bi bi-telephone-fill"></i>
+                        <div class="contact-line contact-line--badge">
+                            <div class="info-icon"><i class="bi bi-telephone-fill"></i></div>
                             <span><strong>{{ $store->name }}</strong><br><a href="tel:{{ $store->phone }}">{{ $store->phone }}</a></span>
                         </div>
                     @endforeach
 
                     @if (!empty($organization['email']))
-                        <div class="contact-line">
-                            <i class="bi bi-envelope-fill"></i>
+                        <div class="contact-line contact-line--badge">
+                            <div class="info-icon"><i class="bi bi-envelope-fill"></i></div>
                             <a href="mailto:{{ $organization['email'] }}">{{ $organization['email'] }}</a>
                         </div>
                     @endif
 
                     @if (!empty($organization['instagram_url']) || !empty($organization['facebook_url']))
-                        <div class="contact-line">
-                            <i class="bi bi-share-fill"></i>
+                        <div class="contact-line contact-line--badge">
+                            <div class="info-icon"><i class="bi bi-share-fill"></i></div>
                             <span>
                                 Volg ons op
                                 @if (!empty($organization['instagram_url']))

@@ -22,7 +22,7 @@ class ProductsTable
                 TextColumn::make('slug')
                     ->searchable(),
                 TextColumn::make('price')
-                    ->money()
+                    ->money('EUR')
                     ->sortable(),
                 TextColumn::make('price_label')
                     ->searchable(),

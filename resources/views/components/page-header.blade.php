@@ -1,9 +1,14 @@
-@props(['kicker', 'title', 'subtitle' => null, 'breadcrumbs' => []])
+@props(['kicker', 'title', 'subtitle' => null, 'image' => null, 'word' => null, 'breadcrumbs' => []])
 
-<header class="page-header">
-    <div class="container">
+<header class="page-hero-cine">
+    @if ($image)
+        <div class="phc-bg" style="background-image: url('{{ $image }}');"></div>
+    @endif
+    <div class="phc-overlay"></div>
+    <span class="hero-word" aria-hidden="true">{{ $word ?? $title }}</span>
+    <div class="container phc-content">
         @if (count($breadcrumbs))
-            <nav class="page-header__breadcrumb small mb-3">
+            <nav class="page-hero-cine__breadcrumb small mb-3">
                 @foreach ($breadcrumbs as $crumb)
                     @if (!$loop->first)
                         <span class="mx-1">/</span>
@@ -17,9 +22,9 @@
             </nav>
         @endif
         <p class="kicker mb-2">{{ $kicker }}</p>
-        <h1 class="page-header__title font-display fst-italic fw-bold text-white mb-3">{{ $title }}</h1>
+        <h1 class="page-hero-cine__title mb-3">{{ $title }}</h1>
         @if ($subtitle)
-            <p class="page-header__subtitle text-white-50 mb-0" style="max-width: 640px;">{{ $subtitle }}</p>
+            <p class="hero-sub mb-0">{{ $subtitle }}</p>
         @endif
     </div>
 </header>

@@ -61,7 +61,6 @@ class MenuItem extends Model
             return match ($this->linkable_type) {
                 Category::class => route('category.show', $this->linkable->slug),
                 Brand::class => route('brand.show', $this->linkable->slug),
-                Product::class => route('product.show', $this->linkable->slug),
                 Store::class => route('store.show', $this->linkable->slug),
                 Page::class => route('page.show', $this->linkable->slug),
                 default => $this->url ? url($this->url) : '#',

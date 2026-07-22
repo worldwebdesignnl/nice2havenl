@@ -2,10 +2,10 @@
 
 namespace App\Filament\Resources\Categories\Schemas;
 
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
 
@@ -22,7 +22,12 @@ class CategoryForm
                 TextInput::make('slug')
                     ->required(),
                 TextInput::make('icon'),
-                Textarea::make('description')
+                RichEditor::make('description')
+                    ->toolbarButtons([
+                        'bold', 'italic', 'underline', 'strike',
+                        'h2', 'h3', 'bulletList', 'orderedList',
+                        'link', 'blockquote', 'undo', 'redo',
+                    ])
                     ->columnSpanFull(),
                 SpatieMediaLibraryFileUpload::make('photo')
                     ->label('Foto (categorietegel)')

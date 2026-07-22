@@ -9,6 +9,10 @@ class SchemaService
 {
     public function organization(): array
     {
+        if (! SchemaSetting::get('schema_org_enabled', true)) {
+            return [];
+        }
+
         $organization = SchemaSetting::get('organization', []);
 
         return array_filter([
@@ -17,7 +21,9 @@ class SchemaService
             '@id' => url('/').'#organization',
             'name' => $organization['name'] ?? config('app.name'),
             'url' => url('/'),
+            'logo' => $organization['logo'] ?? null,
             'email' => $organization['email'] ?? null,
+            'telephone' => $organization['phone'] ?? null,
             'sameAs' => array_values(array_filter([
                 $organization['instagram_url'] ?? null,
                 $organization['facebook_url'] ?? null,
@@ -27,6 +33,10 @@ class SchemaService
 
     public function localBusiness(Store $store): array
     {
+        if (! SchemaSetting::get('schema_local_enabled', true)) {
+            return [];
+        }
+
         $openingHours = $store->openingHours
             ->reject(fn ($hour) => $hour->is_closed)
             ->map(fn ($hour) => [
@@ -63,6 +73,10 @@ class SchemaService
 
     public function breadcrumb(array $items): array
     {
+        if (! SchemaSetting::get('schema_breadcrumb_enabled', true)) {
+            return [];
+        }
+
         return [
             '@context' => 'https://schema.org',
             '@type' => 'BreadcrumbList',

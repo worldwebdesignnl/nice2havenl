@@ -5,12 +5,10 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\StoreController;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Page;
-use App\Models\Product;
 use App\Models\Store;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
@@ -23,8 +21,6 @@ Route::get('/categorie/{category:slug}', [CategoryController::class, 'show'])->n
 
 Route::get('/merken', [BrandController::class, 'index'])->name('brand.index');
 Route::get('/merken/{brand:slug}', [BrandController::class, 'show'])->name('brand.show');
-
-Route::get('/product/{product:slug}', [ProductController::class, 'show'])->name('product.show');
 
 Route::get('/winkel/{store:slug}', [StoreController::class, 'show'])->name('store.show');
 
@@ -45,10 +41,6 @@ Route::get('/sitemap.xml', function () {
 
     Brand::query()->where('is_active', true)->each(
         fn (Brand $brand) => $sitemap->add(Url::create(route('brand.show', $brand->slug))->setPriority(0.6))
-    );
-
-    Product::query()->where('is_active', true)->each(
-        fn (Product $product) => $sitemap->add(Url::create(route('product.show', $product->slug))->setPriority(0.5))
     );
 
     Store::query()->where('is_active', true)->each(

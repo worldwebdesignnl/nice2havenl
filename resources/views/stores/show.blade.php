@@ -10,7 +10,9 @@
     <x-page-header
         kicker="Onze winkel"
         :title="'Nice2Have '.$store->name"
-        :subtitle="$store->description"
+        :subtitle="$store->description ? strip_tags($store->description) : null"
+        :image="$store->photoUrl()"
+        :word="$store->name"
         :breadcrumbs="[
             ['label' => 'Home', 'url' => route('home')],
             ['label' => $store->name],
@@ -24,16 +26,16 @@
                     <p class="kicker mb-2">Winkel</p>
                     <h2 class="font-display mb-3">Nice2Have {{ $store->name }}</h2>
 
-                    <div class="contact-line">
-                        <i class="bi bi-geo-alt-fill"></i>
+                    <div class="contact-line contact-line--badge">
+                        <div class="info-icon"><i class="bi bi-geo-alt-fill"></i></div>
                         <span>{{ $store->address_line }}<br>{{ $store->postal_code }} {{ $store->city }}</span>
                     </div>
-                    <div class="contact-line">
-                        <i class="bi bi-telephone-fill"></i>
+                    <div class="contact-line contact-line--badge">
+                        <div class="info-icon"><i class="bi bi-telephone-fill"></i></div>
                         <span>{{ $store->phone }}</span>
                     </div>
-                    <div class="contact-line mb-2">
-                        <i class="bi bi-clock-fill"></i>
+                    <div class="contact-line contact-line--badge">
+                        <div class="info-icon"><i class="bi bi-clock-fill"></i></div>
                         <span>
                             <strong>Openingstijden</strong><br>
                             @foreach ($store->openingHoursGrouped() as $line)

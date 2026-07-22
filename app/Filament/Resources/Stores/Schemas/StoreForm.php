@@ -3,9 +3,9 @@
 namespace App\Filament\Resources\Stores\Schemas;
 
 use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TimePicker;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
@@ -39,7 +39,12 @@ class StoreForm
                     ->label('Email address')
                     ->email(),
                 TextInput::make('shopping_center'),
-                Textarea::make('description')
+                RichEditor::make('description')
+                    ->toolbarButtons([
+                        'bold', 'italic', 'underline', 'strike',
+                        'h2', 'h3', 'bulletList', 'orderedList',
+                        'link', 'blockquote', 'undo', 'redo',
+                    ])
                     ->columnSpanFull(),
                 TextInput::make('latitude')
                     ->numeric(),

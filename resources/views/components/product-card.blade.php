@@ -1,6 +1,6 @@
 @props(['product'])
 
-<a href="{{ route('product.show', $product->slug) }}" class="product-card">
+<a href="{{ route('contact.index', ['product' => $product->name]) }}" class="product-card">
     @if ($product->coverImageUrl())
         <img src="{{ $product->coverImageUrl() }}" alt="{{ $product->name }}" class="product-card__image">
     @else
@@ -10,7 +10,7 @@
         <p class="product-card__brand mb-1">{{ $product->brand->name }}</p>
         <h3 class="h6 mb-2 text-dark">{{ $product->name }}</h3>
         @if ($product->price)
-            <p class="mb-0 fw-semibold">
+            <p class="mb-0 product-card__price">
                 @if ($product->price_label)
                     <span class="text-muted fw-normal">{{ $product->price_label }}</span>
                 @endif

@@ -9,7 +9,8 @@
     <x-page-header
         kicker="Collectie"
         :title="$category->name"
-        :subtitle="$category->description"
+        :subtitle="$category->description ? strip_tags($category->description) : null"
+        :image="$category->photoUrl('medium')"
         :breadcrumbs="[
             ['label' => 'Home', 'url' => route('home')],
             ['label' => $category->name],
@@ -26,7 +27,7 @@
 
             <div class="row g-4">
                 @forelse ($products as $product)
-                    <div class="col-md-3 col-6">
+                    <div class="col-6 col-md-4 col-lg-3">
                         <x-product-card :product="$product" />
                     </div>
                 @empty
@@ -90,7 +91,7 @@
                                     <a href="{{ route('brand.show', $brand->slug) }}" class="text-decoration-none text-dark">{{ $brand->name }}</a>
                                 </h3>
                                 @if ($brand->description)
-                                    <p class="text-muted mb-0">{{ $brand->description }}</p>
+                                    <p class="text-muted mb-0">{{ strip_tags($brand->description) }}</p>
                                 @endif
                             </div>
                         </div>
