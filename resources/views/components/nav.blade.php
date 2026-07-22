@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg navbar-n2h sticky-top py-3">
     <div class="container">
-        <a class="navbar-brand fs-4" href="{{ url('/') }}">
-            <span class="brand-logo__nice">NICE</span><span class="brand-logo__2">2</span><span class="brand-logo__have">HAVE</span>
+        <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="{{ asset('images/logo.png') }}" alt="Nice2Have" class="navbar-brand__logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
             <span class="navbar-toggler-icon"></span>

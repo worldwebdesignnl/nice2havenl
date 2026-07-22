@@ -105,23 +105,12 @@ a {
 
 .navbar-n2h .navbar-brand {
     display: inline-flex;
-    align-items: baseline;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.03em;
+    align-items: center;
 }
 
-.brand-logo__nice,
-.brand-logo__have {
-    border-bottom: 1px solid var(--dark);
-    padding-bottom: 1px;
-}
-
-.brand-logo__2 {
-    font-size: 1.6em;
-    line-height: 1;
-    margin: 0 0.02em;
-    color: var(--rose);
+.navbar-brand__logo {
+    height: 56px;
+    width: auto;
 }
 
 .navbar-n2h .nav-link {
