@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\Products\Tables;
 
+use App\Models\Product;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ReplicateAction;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
@@ -51,6 +53,16 @@ class ProductsTable
             ])
             ->recordActions([
                 EditAction::make(),
+                ReplicateAction::make()
+                    ->label('Dupliceren')
+                    ->beforeReplicaSaved(function (Product $replica) {
+                        $replica->name = $replica->name.' (kopie)';
+                        $replica->slug = null;
+                        $replica->is_active = false;
+                    })
+                    ->after(function (Product $record, Product $replica) {
+                        $replica->categories()->sync($record->categories->pluck('id'));
+                    }),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

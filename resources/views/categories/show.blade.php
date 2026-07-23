@@ -57,8 +57,8 @@
                 </div>
                 <div class="col-md-6">
                     <p class="kicker mb-2">Waarom Nice2Have</p>
-                    <h2 class="font-display mb-3">Elke week nieuwe binnenkomers</h2>
-                    <p class="mb-3">Wij volgen de trends op de voet en kopen daarom vaak en klein in. Zo is er altijd wel iets nieuws te ontdekken als je bij ons langskomt.</p>
+                    <h2 class="font-display mb-3">{{ $category->why_title ?: 'Elke week nieuwe binnenkomers' }}</h2>
+                    <p class="mb-3">{{ $category->why_text ?: 'Wij volgen de trends op de voet en kopen daarom vaak en klein in. Zo is er altijd wel iets nieuws te ontdekken als je bij ons langskomt.' }}</p>
                     <ul class="check-list">
                         @if ($brands->isNotEmpty())
                             <li><i class="bi bi-check-circle-fill"></i>Merken als {{ $brands->pluck('name')->join(', ', ' en ') }}</li>
@@ -113,8 +113,8 @@
                 </div>
                 <div class="col-md-6 order-md-1">
                     <p class="kicker mb-2">Cadeautip</p>
-                    <h2 class="font-display mb-3">Twijfel je nog? Een cadeaubon is altijd goed.</h2>
-                    <p class="mb-4">Weet je niet zeker wat iemand mooi vindt? Bij Nice2Have haal je in de winkel een cadeaubon, in te vullen naar eigen wens.</p>
+                    <h2 class="font-display mb-3">{{ $category->gift_title ?: 'Twijfel je nog? Een cadeaubon is altijd goed.' }}</h2>
+                    <p class="mb-4">{{ $category->gift_text ?: 'Weet je niet zeker wat iemand mooi vindt? Bij Nice2Have haal je in de winkel een cadeaubon, in te vullen naar eigen wens.' }}</p>
                     <a href="{{ route('contact.index') }}" class="btn btn-outline-rose">Neem contact op</a>
                 </div>
             </div>

@@ -22,12 +22,16 @@
                 <h2 class="font-display mb-2">Ontdek onze collecties</h2>
                 <p class="text-muted">Ons assortiment wisselt continu — dit is een selectie. Het volledige aanbod ontdek je in de winkel.</p>
             </div>
-            <div class="row g-4">
+            <div class="row row-cols-2 row-cols-md-5 g-4">
                 @foreach ($categories as $category)
-                    <div class="col-md-3 col-6">
+                    <div class="col">
                         <x-category-tile :category="$category" :index="$loop->iteration" />
                     </div>
                 @endforeach
+            </div>
+
+            <div class="text-center mt-4">
+                <a href="{{ route('brand.index') }}" class="btn btn-outline-rose">Onze merken</a>
             </div>
         </div>
     </section>
