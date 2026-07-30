@@ -114,7 +114,7 @@ class DatabaseSeeder extends Seeder
                 'name' => $definition['name'],
                 'slug' => $definition['slug'],
                 'icon' => $definition['icon'],
-                'description' => "Ons assortiment {$definition['name']} wisselt continu — kom langs in de winkel om te zien, voelen en passen.",
+                'description' => "Ons assortiment {$definition['name']} wisselt continu. Kom langs in de winkel om te zien, voelen en passen.",
                 'is_active' => true,
                 'sort_order' => $i + 1,
             ]);
@@ -189,7 +189,7 @@ class DatabaseSeeder extends Seeder
     {
         $slides = [
             ['kicker' => 'Nieuwe collectie', 'title' => 'Trendy tassen voor elk moment', 'subtitle' => "Van ruime shoppers tot elegante crossbody's. Ontdek de nieuwste tassen van Josh, Qoss en Micmac Bags.", 'button_label' => 'Bekijk tassen', 'button_url' => '/categorie/tassen'],
-            ['kicker' => 'Toonaangevende merken', 'title' => 'Hip & betaalbaar, elke week anders', 'subtitle' => 'Cluse, Oozoo, ixxxi en nog veel meer — ons assortiment wisselt continu.', 'button_label' => 'Bekijk merken', 'button_url' => '/merken'],
+            ['kicker' => 'Toonaangevende merken', 'title' => 'Hip & betaalbaar, elke week anders', 'subtitle' => 'Cluse, Oozoo, ixxxi en nog veel meer. Ons assortiment wisselt continu.', 'button_label' => 'Bekijk merken', 'button_url' => '/merken'],
             ['kicker' => 'Twee winkels, één stijl', 'title' => 'Altijd een Nice2Have in de buurt', 'subtitle' => 'Winkelcentrum Centrumwaard in Heerhugowaard en winkelcentrum Geesterduin in Castricum.', 'button_label' => 'Bekijk onze winkels', 'button_url' => '/#winkels'],
         ];
 

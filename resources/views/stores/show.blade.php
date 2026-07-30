@@ -1,4 +1,4 @@
-<x-layout :meta-title="$store->meta_title ?: 'Winkel '.$store->name.' — Nice2Have'" :meta-description="$store->meta_description">
+<x-layout :meta-title="$store->meta_title ?: 'Winkel '.$store->name.' - Nice2Have'" :meta-description="$store->meta_description">
     @push('schema')
         <x-schema :data="app(\App\Services\SchemaService::class)->localBusiness($store)" />
         <x-schema :data="app(\App\Services\SchemaService::class)->breadcrumb([

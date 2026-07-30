@@ -1,4 +1,4 @@
-<x-layout :meta-title="$brand->meta_title ?: $brand->name.' — Nice2Have'" :meta-description="$brand->meta_description">
+<x-layout :meta-title="$brand->meta_title ?: $brand->name.' - Nice2Have'" :meta-description="$brand->meta_description">
     @push('schema')
         <x-schema :data="app(\App\Services\SchemaService::class)->breadcrumb([
             ['name' => 'Home', 'url' => route('home')],
@@ -26,7 +26,7 @@
                         <x-product-card :product="$product" />
                     </div>
                 @empty
-                    <p class="text-muted">Op dit moment geen uitgelichte producten van dit merk — kom langs in de winkel voor het volledige assortiment.</p>
+                    <p class="text-muted">Op dit moment geen uitgelichte producten van dit merk. Kom langs in de winkel voor het volledige assortiment.</p>
                 @endforelse
             </div>
         </div>

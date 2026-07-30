@@ -1,4 +1,4 @@
-<x-layout :meta-title="$category->meta_title ?: $category->name.' — Nice2Have'" :meta-description="$category->meta_description">
+<x-layout :meta-title="$category->meta_title ?: $category->name.' - Nice2Have'" :meta-description="$category->meta_description">
     @push('schema')
         <x-schema :data="app(\App\Services\SchemaService::class)->breadcrumb([
             ['name' => 'Home', 'url' => route('home')],
@@ -19,34 +19,6 @@
 
     <section class="py-5 bg-white">
         <div class="container">
-            <div class="text-center mb-4">
-                <p class="kicker mb-2">Uitgelicht</p>
-                <h2 class="font-display mb-2">Onze favorieten van dit moment</h2>
-                <p class="text-muted mb-0">Ons assortiment wisselt continu. Hieronder zie je een greep uit wat er nu in de winkel ligt.</p>
-            </div>
-
-            <div class="row g-4">
-                @forelse ($products as $product)
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <x-product-card :product="$product" />
-                    </div>
-                @empty
-                    <p class="text-muted text-center mb-0">Op dit moment geen uitgelichte producten in deze categorie — kom langs in de winkel voor het volledige assortiment.</p>
-                @endforelse
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5 text-center" style="background-color: var(--cream);">
-        <div class="container" style="max-width: 560px;">
-            <h2 class="font-display mb-3">Twijfel je wat bij je past?</h2>
-            <p class="text-muted mb-4">Onze medewerkers denken graag met je mee. Kom langs in Heerhugowaard of Castricum en probeer ze allemaal.</p>
-            <a href="{{ route('home').'#winkels' }}" class="btn btn-rose">Bekijk onze winkels</a>
-        </div>
-    </section>
-
-    <section class="py-5 bg-white">
-        <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-md-6">
                     @if ($category->featurePhotoUrl())
@@ -56,7 +28,7 @@
                     @endif
                 </div>
                 <div class="col-md-6">
-                    <p class="kicker mb-2">Waarom Nice2Have</p>
+                    <p class="kicker mb-2">{{ $category->why_kicker ?: 'Waarom Nice2Have' }}</p>
                     <h2 class="font-display mb-3">{{ $category->why_title ?: 'Elke week nieuwe binnenkomers' }}</h2>
                     <p class="mb-3">{{ $category->why_text ?: 'Wij volgen de trends op de voet en kopen daarom vaak en klein in. Zo is er altijd wel iets nieuws te ontdekken als je bij ons langskomt.' }}</p>
                     <ul class="check-list">
@@ -65,10 +37,42 @@
                         @endif
                         <li><i class="bi bi-check-circle-fill"></i>Prijzen waar je wat voor terugkrijgt</li>
                         <li><i class="bi bi-check-circle-fill"></i>Eerlijk en persoonlijk advies in de winkel</li>
-                        <li><i class="bi bi-check-circle-fill"></i>Ruilen altijd, in leuke verpakking</li>
+                        @if ($category->allow_exchange)
+                            <li><i class="bi bi-check-circle-fill"></i>Ruilen kan altijd, gewoon in de winkel</li>
+                        @endif
                     </ul>
                 </div>
             </div>
+        </div>
+    </section>
+
+    @if ($category->show_featured_products)
+        <section class="py-5" style="background-color: var(--cream);">
+            <div class="container">
+                <div class="text-center mb-4">
+                    <p class="kicker mb-2">Uitgelicht</p>
+                    <h2 class="font-display mb-2">Onze favorieten van dit moment</h2>
+                    <p class="text-muted mb-0">Ons assortiment wisselt continu. Hieronder zie je een greep uit wat er nu in de winkel ligt.</p>
+                </div>
+
+                <div class="row g-4">
+                    @forelse ($products as $product)
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <x-product-card :product="$product" />
+                        </div>
+                    @empty
+                        <p class="text-muted text-center mb-0">Op dit moment geen uitgelichte producten in deze categorie. Kom langs in de winkel voor het volledige assortiment.</p>
+                    @endforelse
+                </div>
+            </div>
+        </section>
+    @endif
+
+    <section class="py-5 text-center bg-white">
+        <div class="container" style="max-width: 560px;">
+            <h2 class="font-display mb-3">Twijfel je wat bij je past?</h2>
+            <p class="text-muted mb-4">Onze medewerkers denken graag met je mee. Kom langs in Heerhugowaard of Castricum en probeer ze allemaal.</p>
+            <a href="{{ route('home').'#winkels' }}" class="btn btn-rose">Bekijk onze winkels</a>
         </div>
     </section>
 
@@ -112,7 +116,7 @@
                     @endif
                 </div>
                 <div class="col-md-6 order-md-1">
-                    <p class="kicker mb-2">Cadeautip</p>
+                    <p class="kicker mb-2">{{ $category->gift_kicker ?: 'Cadeautip' }}</p>
                     <h2 class="font-display mb-3">{{ $category->gift_title ?: 'Twijfel je nog? Een cadeaubon is altijd goed.' }}</h2>
                     <p class="mb-4">{{ $category->gift_text ?: 'Weet je niet zeker wat iemand mooi vindt? Bij Nice2Have haal je in de winkel een cadeaubon, in te vullen naar eigen wens.' }}</p>
                     <a href="{{ route('contact.index') }}" class="btn btn-outline-rose">Neem contact op</a>

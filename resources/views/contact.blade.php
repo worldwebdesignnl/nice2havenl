@@ -1,11 +1,12 @@
 <x-layout
-    meta-title="Contact — Nice2Have"
+    meta-title="Contact - Nice2Have"
     meta-description="Vragen over een product of nieuwe collectie? We horen graag van je."
 >
     <x-page-header
-        kicker="Nice2Have"
-        title="Contact"
-        subtitle="Vragen over een product of nieuwe collectie? We horen graag van je."
+        :kicker="($pageHeader['kicker'] ?? null) ?: 'Nice2Have'"
+        :title="($pageHeader['title'] ?? null) ?: 'Contact'"
+        :subtitle="($pageHeader['subtitle'] ?? null) ?: 'Vragen over een product of nieuwe collectie? We horen graag van je.'"
+        :image="!empty($pageHeader['image']) ? Illuminate\Support\Facades\Storage::disk('public')->url($pageHeader['image']) : null"
         :breadcrumbs="[
             ['label' => 'Home', 'url' => route('home')],
             ['label' => 'Contact'],

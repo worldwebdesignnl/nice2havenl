@@ -377,7 +377,7 @@ a {
 .phc-content {
     position: relative;
     z-index: 3;
-    padding: 5rem 0 5.5rem;
+    padding: 5rem 15px 5.5rem;
 }
 
 .page-hero-cine__title {
@@ -422,12 +422,12 @@ a {
 }
 
 @media (max-width: 767.98px) {
-    .phc-content { padding: 3.5rem 0 4.5rem; }
+    .phc-content { padding: 3.5rem 15px 4.5rem; }
 }
 
 @media (max-width: 575.98px) {
     .page-hero-cine .hero-word { font-size: 3.6rem; bottom: -0.9rem; -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18); }
-    .phc-content { padding: 3rem 0 4.5rem; }
+    .phc-content { padding: 3rem 15px 4.5rem; }
 }
 
 /* Generic feature placeholder image (used where no photo has been uploaded yet) */
@@ -470,7 +470,7 @@ a {
 }
 
 .store-card__image {
-    height: 220px;
+    height: 293px;
     width: 100%;
     object-fit: cover;
 }

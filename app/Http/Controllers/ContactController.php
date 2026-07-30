@@ -18,6 +18,7 @@ class ContactController extends Controller
         return view('contact', [
             'stores' => Store::query()->with('openingHours')->where('is_active', true)->orderBy('sort_order')->get(),
             'organization' => SchemaSetting::get('organization', []),
+            'pageHeader' => SchemaSetting::get('contact_page', []),
         ]);
     }
 

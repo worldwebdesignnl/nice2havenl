@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $metaTitle ?? 'Nice2Have — Trendjuwelier & conceptstore' }}</title>
+    <title>{{ $metaTitle ?? 'Nice2Have - Trendjuwelier & conceptstore' }}</title>
     <meta name="description" content="{{ $metaDescription ?? 'Nice2Have is trendjuwelier en conceptstore met winkels in Heerhugowaard en Castricum. Tassen, sieraden, horloges en accessoires.' }}">
     <link rel="canonical" href="{{ url()->current() }}">
 

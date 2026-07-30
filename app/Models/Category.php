@@ -20,7 +20,8 @@ class Category extends Model implements HasMedia
 
     protected $fillable = [
         'parent_id', 'name', 'slug', 'icon', 'description',
-        'why_title', 'why_text', 'gift_title', 'gift_text',
+        'why_kicker', 'why_title', 'why_text', 'gift_kicker', 'gift_title', 'gift_text',
+        'show_featured_products', 'allow_exchange',
         'meta_title', 'meta_description', 'is_active', 'sort_order',
     ];
 
@@ -28,6 +29,8 @@ class Category extends Model implements HasMedia
     {
         return [
             'is_active' => 'boolean',
+            'show_featured_products' => 'boolean',
+            'allow_exchange' => 'boolean',
         ];
     }
 

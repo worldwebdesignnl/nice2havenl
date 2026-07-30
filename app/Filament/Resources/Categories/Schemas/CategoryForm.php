@@ -36,6 +36,16 @@ class CategoryForm
                     ->collection('photo')
                     ->image()
                     ->columnSpanFull(),
+                Section::make('Weergave-opties')
+                    ->components([
+                        Toggle::make('show_featured_products')
+                            ->label('Uitgelicht-blok tonen')
+                            ->helperText('Zet uit om het blok met uitgelichte producten op deze categoriepagina te verbergen.'),
+                        Toggle::make('allow_exchange')
+                            ->label('"Ruilen kan altijd" tonen')
+                            ->helperText('Zet uit als producten uit deze categorie niet te ruilen zijn (bijvoorbeeld parfum).'),
+                    ])
+                    ->columns(2),
                 Section::make('Waarom Nice2Have')
                     ->description('Leeg laten valt terug op de standaardtekst die voor alle categorieën geldt.')
                     ->components([
@@ -44,6 +54,9 @@ class CategoryForm
                             ->collection('feature_photo')
                             ->image()
                             ->columnSpanFull(),
+                        TextInput::make('why_kicker')
+                            ->label('Kicker (klein kopje boven de titel)')
+                            ->placeholder('Waarom Nice2Have'),
                         TextInput::make('why_title')
                             ->label('Titel')
                             ->placeholder('Elke week nieuwe binnenkomers'),
@@ -61,6 +74,9 @@ class CategoryForm
                             ->collection('gift_photo')
                             ->image()
                             ->columnSpanFull(),
+                        TextInput::make('gift_kicker')
+                            ->label('Kicker (klein kopje boven de titel)')
+                            ->placeholder('Cadeautip'),
                         TextInput::make('gift_title')
                             ->label('Titel')
                             ->placeholder('Twijfel je nog? Een cadeaubon is altijd goed.'),

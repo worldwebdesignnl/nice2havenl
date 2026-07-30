@@ -1,4 +1,4 @@
-<x-layout meta-title="Merken — Nice2Have">
+<x-layout meta-title="Merken - Nice2Have">
     <x-page-header
         kicker="Merken"
         title="Toonaangevende merken"

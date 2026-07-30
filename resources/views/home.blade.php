@@ -20,7 +20,7 @@
             <div class="text-center mb-4">
                 <p class="kicker mb-2">Ons assortiment</p>
                 <h2 class="font-display mb-2">Ontdek onze collecties</h2>
-                <p class="text-muted">Ons assortiment wisselt continu — dit is een selectie. Het volledige aanbod ontdek je in de winkel.</p>
+                <p class="text-muted">Ons assortiment wisselt continu. Dit is een selectie, het volledige aanbod ontdek je in de winkel.</p>
             </div>
             <div class="row row-cols-2 row-cols-md-5 g-4">
                 @foreach ($categories as $category)
@@ -58,7 +58,7 @@
             <h2 class="font-display text-white mb-3">Zien, voelen en passen doe je in de winkel</h2>
             <p class="mb-4">Ons assortiment wisselt continu. Online lichten we per categorie onze favorieten uit. De rest ontdek je bij ons in de winkel.</p>
             <div class="d-flex gap-3 justify-content-center flex-wrap">
-                <a href="{{ route('category.show', 'tassen') }}" class="btn btn-rose btn-lg">Bekijk tassen</a>
+                <a href="https://www.nice-2-have-shop.nl/" target="_blank" rel="noopener" class="btn btn-rose btn-lg">Bezoek webwinkel</a>
                 <a href="{{ route('store.show', 'heerhugowaard') }}" class="btn btn-outline-light btn-lg">Bezoek onze winkel</a>
             </div>
         </div>

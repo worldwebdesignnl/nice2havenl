@@ -1,4 +1,4 @@
-<x-layout :meta-title="$page->meta_title ?: $page->title.' — Nice2Have'" :meta-description="$page->meta_description">
+<x-layout :meta-title="$page->meta_title ?: $page->title.' - Nice2Have'" :meta-description="$page->meta_description">
     @push('schema')
         <x-schema :data="app(\App\Services\SchemaService::class)->breadcrumb([
             ['name' => 'Home', 'url' => route('home')],
