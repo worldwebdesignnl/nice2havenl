@@ -33,7 +33,6 @@ return [
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
-            'serve' => true,
             'throw' => false,
             'report' => false,
         ],
@@ -43,6 +42,10 @@ return [
             'root' => storage_path('app/public'),
             'url' => rtrim(env('APP_URL', 'http://localhost'), '/').'/storage',
             'visibility' => 'public',
+            // Serves files straight through Laravel (Illuminate\Filesystem\ServeFile)
+            // instead of relying on the public/storage symlink, which some shared
+            // hosts block (disabled exec()/symlink(), SymLinksIfOwnerMatch, ...).
+            'serve' => true,
             'throw' => false,
             'report' => false,
         ],
