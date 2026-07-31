@@ -14,6 +14,7 @@ use App\Models\UspBlock;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
+use Spatie\Image\Image;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 /**
@@ -287,13 +288,40 @@ class ExportContentSeeder extends Command
             File::ensureDirectoryExists($destDir);
 
             $filename = $media->file_name;
-            File::copy($sourcePath, "{$destDir}/{$filename}");
+            $destPath = "{$destDir}/{$filename}";
+            File::copy($sourcePath, $destPath);
+            $this->shrinkIfNeeded($destPath);
 
             $fixturePath = "database_path('seeders/media/{$relativeDir}/{$filename}')";
             $out .= "        {$varExpression}->addMedia({$fixturePath})->preservingOriginal()->toMediaCollection('{$collection}');\n";
         }
 
         return $out;
+    }
+
+    /**
+     * Downscales and compresses a fixture image if it's larger than needed.
+     * The largest conversion anywhere on the site is 1600px wide, so nothing
+     * bigger than that is useful, and it keeps memory use low when the
+     * conversions are (re)generated on a low-memory hosting plan.
+     */
+    private function shrinkIfNeeded(string $path): void
+    {
+        $maxDimension = 2000;
+
+        $image = Image::load($path);
+
+        if ($image->getWidth() <= $maxDimension && $image->getHeight() <= $maxDimension) {
+            return;
+        }
+
+        if ($image->getWidth() >= $image->getHeight()) {
+            $image->width($maxDimension);
+        } else {
+            $image->height($maxDimension);
+        }
+
+        $image->quality(80)->save($path);
     }
 
     private function exportArray(array $data): string
