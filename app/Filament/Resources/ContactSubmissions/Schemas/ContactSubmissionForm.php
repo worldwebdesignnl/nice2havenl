@@ -19,6 +19,9 @@ class ContactSubmissionForm
                     ->relationship('product', 'name'),
                 TextInput::make('first_name')
                     ->required(),
+                TextInput::make('email')
+                    ->email()
+                    ->required(),
                 TextInput::make('phone')
                     ->tel(),
                 TextInput::make('subject'),

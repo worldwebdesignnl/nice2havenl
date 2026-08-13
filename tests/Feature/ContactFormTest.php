@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\ContactFormReceived;
 use App\Mail\ContactFormSubmitted;
 use App\Models\ContactSubmission;
 use App\Models\Store;
@@ -28,6 +29,7 @@ test('a valid contact form submission is stored and emailed', function () {
 
     $response = $this->post('/contact', [
         'first_name' => 'Test Klant',
+        'email' => 'klant@example.com',
         'phone' => '0612345678',
         'store_id' => $store->id,
         'subject' => 'Vraag over openingstijden',
@@ -44,4 +46,6 @@ test('a valid contact form submission is stored and emailed', function () {
     expect($submission->store_id)->toBe($store->id);
 
     Mail::assertQueued(ContactFormSubmitted::class, fn ($mail) => $mail->submission->is($submission));
+    Mail::assertQueued(ContactFormReceived::class, fn ($mail) => $mail->submission->is($submission)
+        && $mail->hasTo('klant@example.com'));
 });

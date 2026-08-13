@@ -36,6 +36,12 @@
                             </div>
 
                             <div class="col-md-6">
+                                <label class="form-label">E-mailadres</label>
+                                <input type="email" name="email" value="{{ old('email') }}" placeholder="jij@voorbeeld.nl" class="form-control @error('email') is-invalid @enderror">
+                                @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+
+                            <div class="col-md-6">
                                 <label class="form-label">Telefoon</label>
                                 <input type="text" name="phone" value="{{ old('phone') }}" placeholder="06-12 34 56 78" class="form-control @error('phone') is-invalid @enderror">
                                 @error('phone') <div class="invalid-feedback">{{ $message }}</div> @enderror

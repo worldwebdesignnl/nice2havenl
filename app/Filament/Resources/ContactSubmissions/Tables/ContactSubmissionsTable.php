@@ -27,6 +27,9 @@ class ContactSubmissionsTable
                 TextColumn::make('first_name')
                     ->label('Naam')
                     ->searchable(),
+                TextColumn::make('email')
+                    ->label('E-mail')
+                    ->searchable(),
                 TextColumn::make('phone')
                     ->label('Telefoon')
                     ->searchable(),

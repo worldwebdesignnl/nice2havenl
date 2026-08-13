@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactRequest;
+use App\Mail\ContactFormReceived;
 use App\Mail\ContactFormSubmitted;
 use App\Models\ContactSubmission;
 use App\Models\SchemaSetting;
@@ -25,7 +26,7 @@ class ContactController extends Controller
     public function store(ContactRequest $request): RedirectResponse
     {
         $submission = ContactSubmission::create([
-            ...$request->safe()->only(['store_id', 'first_name', 'phone', 'subject', 'message']),
+            ...$request->safe()->only(['store_id', 'first_name', 'email', 'phone', 'subject', 'message']),
             'meta' => [
                 'ip' => $request->ip(),
                 'user_agent' => $request->userAgent(),
@@ -37,6 +38,7 @@ class ContactController extends Controller
         $recipient = $submission->store->email ?? $organization['email'] ?? config('mail.from.address');
 
         Mail::to($recipient)->send(new ContactFormSubmitted($submission));
+        Mail::to($submission->email)->send(new ContactFormReceived($submission));
 
         return back()->with('status', 'Bedankt voor je bericht! We nemen zo snel mogelijk contact met je op.');
     }
