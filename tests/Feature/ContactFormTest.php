@@ -49,3 +49,19 @@ test('a valid contact form submission is stored and emailed', function () {
     Mail::assertQueued(ContactFormReceived::class, fn ($mail) => $mail->submission->is($submission)
         && $mail->hasTo('klant@example.com'));
 });
+
+test('a contact form submission containing a link is rejected as spam', function () {
+    Mail::fake();
+
+    $response = $this->post('/contact', [
+        'first_name' => 'Spam Bot',
+        'email' => 'spam@example.com',
+        'subject' => 'Boost your rankings',
+        'message' => 'Check out our services at https://spam-example.com for cheap backlinks.',
+        'privacy_accepted' => '1',
+    ]);
+
+    $response->assertSessionHasErrors('message');
+    expect(ContactSubmission::count())->toBe(0);
+    Mail::assertNothingQueued();
+});

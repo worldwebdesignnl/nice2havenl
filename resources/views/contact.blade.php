@@ -18,15 +18,21 @@
             @if (session('status'))
                 <div class="alert alert-success">{{ session('status') }}</div>
             @endif
+            @error('g-recaptcha-response')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
 
             <div class="row g-5">
                 <div class="col-lg-7">
                     <p class="kicker mb-2">Stuur een bericht</p>
                     <h2 class="font-display mb-4">We reageren binnen één werkdag</h2>
 
-                    <form method="POST" action="{{ route('contact.store') }}">
+                    <form method="POST" action="{{ route('contact.store') }}" id="contactForm">
                         @csrf
                         @honeypot
+                        @if (config('services.recaptcha.site_key'))
+                            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+                        @endif
 
                         <div class="row g-3">
                             <div class="col-md-6">
@@ -140,4 +146,26 @@
             </div>
         </div>
     </section>
+
+    @if (config('services.recaptcha.site_key'))
+        @push('head')
+            <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+        @endpush
+
+        @push('scripts')
+            <script>
+                document.getElementById('contactForm').addEventListener('submit', function (e) {
+                    e.preventDefault();
+                    const form = this;
+
+                    grecaptcha.ready(function () {
+                        grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', { action: 'contact' }).then(function (token) {
+                            document.getElementById('g-recaptcha-response').value = token;
+                            form.submit();
+                        });
+                    });
+                });
+            </script>
+        @endpush
+    @endif
 </x-layout>
