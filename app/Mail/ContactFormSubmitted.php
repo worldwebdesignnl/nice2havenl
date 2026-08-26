@@ -6,6 +6,7 @@ use App\Models\ContactSubmission;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -22,6 +23,9 @@ class ContactFormSubmitted extends Mailable implements ShouldQueue
     {
         return new Envelope(
             subject: 'Nieuw contactformulier: '.($this->submission->subject ?: $this->submission->first_name),
+            replyTo: [
+                new Address($this->submission->email, $this->submission->first_name),
+            ],
         );
     }
 
