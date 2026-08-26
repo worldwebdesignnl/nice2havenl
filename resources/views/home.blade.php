@@ -10,7 +10,7 @@
     <section class="py-5">
         <div class="container text-center">
             <p class="kicker mb-2">Welkom bij Nice2Have</p>
-            <h1 class="font-display mb-4">Waar elke vrouw zich op haar gemak voelt</h1>
+            <h1 class="font-display mb-4">Waar elke vrouw zich op haar gemak voelt, maar waar de man niet vergeten wordt…</h1>
         </div>
         <x-usp-blocks :blocks="$uspBlocks" />
     </section>
