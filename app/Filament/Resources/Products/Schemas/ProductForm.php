@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Products\Schemas;
 
+use App\Models\Category;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -25,9 +26,20 @@ class ProductForm
                 TextInput::make('slug')
                     ->required(),
                 Select::make('categories')
-                    ->relationship('categories', 'name')
+                    ->relationship(
+                        'categories',
+                        'name',
+                        modifyQueryUsing: fn ($query) => $query->orderBy('parent_id')->orderBy('sort_order'),
+                    )
+                    ->getOptionLabelFromRecordUsing(
+                        fn (Category $record) => $record->parent
+                            ? "{$record->parent->name} › {$record->name}"
+                            : $record->name,
+                    )
                     ->multiple()
+                    ->searchable()
                     ->preload()
+                    ->columnSpanFull()
                     ->required(),
                 Textarea::make('short_description')
                     ->columnSpanFull(),
