@@ -4,6 +4,10 @@
 We hebben je bericht in goede orde ontvangen en reageren binnen één werkdag.
 
 <x-mail::panel>
+**E-mailadres:** {{ $submission->email }}<br>
+@if ($submission->phone)
+**Telefoon:** {{ $submission->phone }}<br>
+@endif
 @if ($submission->subject)
 **Onderwerp:** {{ $submission->subject }}<br>
 @endif
