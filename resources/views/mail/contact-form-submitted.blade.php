@@ -2,6 +2,7 @@
 # Nieuw bericht via het contactformulier
 
 **Naam:** {{ $submission->first_name }}
+**E-mailadres:** {{ $submission->email }}
 @if ($submission->phone)
 **Telefoon:** {{ $submission->phone }}
 @endif
